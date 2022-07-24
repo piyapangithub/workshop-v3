@@ -9,21 +9,21 @@ pipeline {
         registry = "docker.io"
     }
 
-//     stages {
+    stages {
 
-//         stage('Checkout') {
-//             steps {
-//                 checkout scm
-//             }
-//         }
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
 
-//         stage('Print Environment') {
-//             steps {
-//                 sh('ls -al')
-//                 sh('printenv')
+        stage('Print Environment') {
+            steps {
+                sh('ls -al')
+                sh('printenv')
                 
-//             }
-//         }
+            }
+        }
         // stage('Ansible prepareations docker ') {
         //     steps{
         //         sh 'ANSIBLE_ROLES_PATH="$PWD/ansible-script/roles" ansible-playbook -vvv ./ansible-script/playbook/web-server/web-server.yml -i ./ansible-script/host -u root -e "state=prepareation tagnumber=${BUILD_NUMBER}"'
