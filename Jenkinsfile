@@ -45,7 +45,6 @@ pipeline {
         stage('Selenium Testing') {
             steps {
                 sh('ls -al')
-                sh('npm install')
                 sh('npm --version')
                }
         }
