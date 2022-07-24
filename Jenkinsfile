@@ -44,9 +44,10 @@ pipeline {
          
         stage('Selenium Testing') {
             steps {
+                script {
                 sh "node test.js"
-                input "Does the staging environment look ok?"
-            }
+                      }
+                }
         }
         
 //         stage('Deployment'){
