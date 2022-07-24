@@ -45,7 +45,7 @@ pipeline {
         stage('Selenium Testing') {
             steps {
                 sh('ls -al')
-                sh('sudo apt install npme')
+                sh('sudo apt install npm')
                 sh('npm --version')
                }
         }
