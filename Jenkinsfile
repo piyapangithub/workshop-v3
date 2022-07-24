@@ -1,27 +1,77 @@
 pipeline {
+
     agent {
-        docker {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
+        label 'master'
     }
+
+    environment {
+        image = "piyapandocker/workshop-test"
+        registry = "docker.io"
+    }
+
     stages {
-        stage('Build') {
+
+        stage('Checkout') {
             steps {
-                sh 'npm install'
+                checkout scm
             }
         }
-        stage('Test') {
+
+        stage('Print Environment') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh('ls -al')
+                sh('printenv')
+                
             }
         }
-        stage('Deliver') { 
-            steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
-            }
-        }
+        // stage('Ansible prepareations docker ') {
+        //     steps{
+        //         sh 'ANSIBLE_ROLES_PATH="$PWD/ansible-script/roles" ansible-playbook -vvv ./ansible-script/playbook/web-server/web-server.yml -i ./ansible-script/host -u root -e "state=prepareation tagnumber=${BUILD_NUMBER}"'
+        //     }
+        // }
+        
+//         stage('Build docker image') {
+//             steps {
+//                 script {
+//                     docker.withRegistry('', 'dockerhub') {
+//                         def slackImage = docker.build("${env.image}:${BUILD_NUMBER}")
+//                         slackImage.push()
+//                         slackImage.push('latest')
+//                     }
+//                  }
+//             }
+//         }
+           
+//         stage('Selenium Testing') {
+//             steps {
+//                 sh'npm --version'
+//                }
+//         }
+        
+//         stage('Deployment'){
+//             steps {
+//                 sh "docker-compose up -d"
+//             }
+            
+//         }
+
+        // stage('tag docker image') {
+        //     steps {
+        //        sh "docker tag ${env.image}:${BUILD_NUMBER} ${env.image}:latest"
+        //     }
+        // }
+
+        // stage('push docker image') {
+        //     steps {
+        //        sh "docker push ${env.image}:latest"
+        //     }
+        // }
+
+        // stage('Verify new docker image(s)') {
+        //     steps {
+        //         sh('docker images')
+        //     }
+        // }
+        
     }
 }
