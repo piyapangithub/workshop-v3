@@ -44,9 +44,9 @@ pipeline {
          
         stage('Selenium Testing') {
             steps {
-                sh (./workshop-v3)
+                sh ('cd ./workshop-v3')
                 sh ('node test.js')
-                }
+               }
         }
         
 //         stage('Deployment'){
