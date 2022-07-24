@@ -48,7 +48,7 @@ pipeline {
         
         stage('Selenium Testing') {
             steps {
-                sh 'npm --version'
+                sh 'node test.js'
                }
         }
         
