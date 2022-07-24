@@ -44,9 +44,8 @@ pipeline {
          
         stage('Selenium Testing') {
             steps {
-                script { ./workshop-v3
+                sh ./workshop-v3
                 sh "node test.js"
-                      }
                 }
         }
         
