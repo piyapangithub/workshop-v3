@@ -41,12 +41,14 @@ pipeline {
 //                  }
 //             }
 //         }
-           
-//         stage('Selenium Testing') {
-//             steps {
-//                 sh'npm --version'
-//                }
-//         }
+        tools {
+        nodejs '18.6.0'
+        }   
+        stage('Selenium Testing') {
+            steps {
+                sh 'npm --version'
+               }
+        }
         
 //         stage('Deployment'){
 //             steps {
