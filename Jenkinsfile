@@ -3,7 +3,11 @@ pipeline {
     agent {
         label 'master'
     }
-
+    
+     tools {
+        nodejs '18.6.0'
+    }  
+    
     environment {
         image = "piyapandocker/workshop-test"
         registry = "docker.io"
@@ -41,9 +45,7 @@ pipeline {
 //                  }
 //             }
 //         }
-        tools {
-        nodejs '18.6.0'
-        }   
+        
         stage('Selenium Testing') {
             steps {
                 sh 'npm --version'
