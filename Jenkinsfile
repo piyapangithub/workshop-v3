@@ -45,7 +45,7 @@ pipeline {
         stage('Selenium Testing') {
             steps {
                 sh('ls -al')
-                sh('node test')
+                sh('date')
                }
         }
         
