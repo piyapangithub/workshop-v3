@@ -42,10 +42,16 @@ pipeline {
 //             }
 //         }
          
+       stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+            
         stage('Selenium Testing') {
             steps {
-                sh('ls -al')
-                sh('npm --version')
+                sh'npm --version'
                }
         }
         
